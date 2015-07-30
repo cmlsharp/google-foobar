@@ -17,8 +17,8 @@ and so on. Each  string is one of:
 To ensure that the output is the smallest possible, the last element of the list must not be "-".
 x will always be a positive integer, no larger than 1000000000.
 """
-
-
+# This function is basically the same as the one found in 1-1_pallindrome.py except 
+# it is specifically for converting to ternary (base 3)
 def nearestpowerof3(x):
     numbers = '012'
     if x < 0:
@@ -35,14 +35,22 @@ def nearestpowerof3(x):
     if sign < 0:
         digits.append('-')
     digits.reverse()
+    # Here's where it differs. The concept here is that the number of digits a number is when
+    # converted into ternary, corresponds with the exponent of the next power of three greater than that number
+    # e.g. 26 is '222', thus the next greatest power of 3 is 3**3 aka 27.
     exp = int(len(''.join(digits)))
     return exp
 
 
 def answer(x):
     product = []
+    # Add the object's weight to the left side
     left = [x]
     right = []
+    # The following algorithm starts with the next greatest power of 3 and works it's way down
+    # It calculates the difference between the two sides and, if adding the weight to the right side will
+    # decrease the absolute value of the difference, it adds it. Same with the left. If adding it to either
+    # side would not decrease the difference at all, it discards it.
     for power in range(nearestpowerof3(x), -1, -1):
         diff = sum(left) - sum(right)
         if abs(sum(left) + 3**power - sum(right)) < abs(diff):
@@ -53,6 +61,9 @@ def answer(x):
             product.append('R')
         else:
             product.append('-')
+    # If the solution begins (yes, begins. This list still needs to be reversed. See below) with a '-', remove it.
     if product[0] == '-':
         product = priduct[1:]
+    # Of course the above algorithm creats the list starting from the largest power. The question asks 
+    # for the list to start with the 1 unit weight first. Thus, we hve to revert the list.
     return list(reversed(product))
