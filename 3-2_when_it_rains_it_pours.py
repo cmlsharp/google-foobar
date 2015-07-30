@@ -96,7 +96,7 @@ def answer(heights):
 
     I added another iteration, from right to left, creating two different lists
     of towers. There was some overlap so I converted both lists to sets (set theory
-    WOOOO!!).
+    WOOOO!!) and did a union.
 
     Next I iterate through each tower and determine the water level by figuring
     out which is shorter, it or the following tower. Then I iterate through each
