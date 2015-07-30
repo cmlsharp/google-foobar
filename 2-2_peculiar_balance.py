@@ -47,10 +47,12 @@ def answer(x):
     # Add the object's weight to the left side
     left = [x]
     right = []
-    # The following algorithm starts with the next greatest power of 3 and works it's way down
-    # It calculates the difference between the two sides and, if adding the weight to the right side will
-    # decrease the absolute value of the difference, it adds it. Same with the left. If adding it to either
-    # side would not decrease the difference at all, it discards it.
+    """
+    The following algorithm starts with the next greatest power of 3 and works it's way down
+    It calculates the difference between the two sides and, if adding the weight to the right side will
+    decrease the absolute value of the difference, it adds it. Same with the left. If adding it to either
+    side would not decrease the difference at all, it discards it.
+    """
     for power in range(nearestpowerof3(x), -1, -1):
         diff = sum(left) - sum(right)
         if abs(sum(left) + 3**power - sum(right)) < abs(diff):
