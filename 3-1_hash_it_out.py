@@ -114,7 +114,7 @@ def answer(digest):
     (message[i-1] XOR x) mod 129 = 0
 
     So then, let's just go through and find all of the possible values for x
-    that when XORed with the previous message character are divisable by 129.
+    that when XORed with the previous message character are divisible by 129.
     When we XOR it with message[i-1] and divide it by 129. Also, since we know
     these messages must be less than a byte each, we also need to convert it to
     mod 256.
