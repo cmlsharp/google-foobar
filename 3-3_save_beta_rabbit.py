@@ -54,8 +54,14 @@ Output:
     (int) 1
 """
 
-
 def creategraph(gridlist):
+    """
+    This function takes a two dimensional array as input (number of columns and rows must be equal)
+    The elements in the array are the out-going distances of their respective nodes
+    
+    Creating a graph probably isn't *really* necessary but it was a helpful abstraction for 
+    me to wrap my brain around the problem.
+    """
     from string import ascii_lowercase
     size = len(gridlist)
     letters = list(ascii_lowercase)[:size]
@@ -74,6 +80,12 @@ def creategraph(gridlist):
 
 
 class MemoizeFunction:
+    """
+    This class is stolen from somewhere.
+    It serves as a wrapper for the funciton.
+    Before the function is run, it checks the inputs in self.memory 
+    and simply returns the value if it's in there.
+    """
     def __init__(self, func):
         self.function = func
         self.memory = dict()
@@ -89,9 +101,16 @@ class MemoizeFunction:
 def answer(food, grid):
     G, distances = creategraph(grid)
 
+    
+
     @MemoizeFunction
     def find_fewest_leftovers(food_supply, node):
-        food_supply -= distances[node]
+        """
+        As this function generates every possible path from top left to bottom right,
+        memoization is an absolutely neccessary here.
+        It starts with the bottom right node and recurses, eventually returning the
+        least efficient path that fits our constraints.
+        """
         if food_supply < 0:
             return 201
         if len(G[node]) == 0:
