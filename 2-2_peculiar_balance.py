@@ -65,7 +65,7 @@ def answer(x):
             product.append('-')
     # If the solution begins (yes, begins. This list still needs to be reversed. See below) with a '-', remove it.
     if product[0] == '-':
-        product = priduct[1:]
+        product = product[1:]
     # Of course the above algorithm creats the list starting from the largest power. The question asks 
     # for the list to start with the 1 unit weight first. Thus, we hve to revert the list.
     return list(reversed(product))
