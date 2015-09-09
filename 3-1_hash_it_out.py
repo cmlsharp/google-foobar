@@ -63,7 +63,7 @@ def answer(digest):
     bit-wise exclusive OR
 
     Here was my thought process: Let's make this problem a little simpler to
-    start out with Let a = ((129 * message[i]) ^ message[i-1]) Alrighty then, so
+    start out with Let x = ((129 * message[i]) ^ message[i-1]) Alrighty then, so
     what are we left with?
 
     x mod 256 = digest[i]
